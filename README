@@ -1,4 +1,4 @@
 Varietree
 
 Minecraft Bukkit plugin.
-When bonemeal is used to make a sapling grow, it becomes a random type of tree, including Birch or Redwood. Give your world a variety of trees with Varietree!
+When bonemeal is used to make a sapling grow, it becomes a random type of tree, including Birch or Redwood. Give your world a variety of trees with Varietree! Permissions plugin supported (not required). If Permissions plugin found, only players with 'varietree.random' will grow random trees, all other players will grow standard trees.
