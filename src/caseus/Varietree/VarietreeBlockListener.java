@@ -15,12 +15,18 @@ import caseus.Varietree.Varietree;
 
 public class VarietreeBlockListener extends BlockListener {
 	public static Varietree plugin;
-	public static final TreeType[] TREETYPES = TreeType.values();
-	public static final int NUM_TREETYPES = TREETYPES.length;
 	public static final Random RANDOM = new Random();
 	
 	public static TreeType randomTreeType(){
-		return TREETYPES[RANDOM.nextInt(NUM_TREETYPES)];
+		int rand = RANDOM.nextInt(Varietree.maxChance);
+		
+		for(int i = 0; i < Varietree.treeTypes.size(); i ++){
+			if(rand < Varietree.chance.get(i)){
+				return Varietree.treeTypes.get(i);
+			}
+		}
+		
+		return Varietree.treeTypes.get(0);
 	}
 	
 	public VarietreeBlockListener(Varietree instance){
