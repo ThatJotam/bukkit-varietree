@@ -56,7 +56,13 @@ public class VarietreeBlockListener extends BlockListener {
 						t = randomTreeType();
 					}
 					
-					item.setAmount(item.getAmount()-1);
+					int amt = item.getAmount();
+					if(amt == 1){
+						player.getInventory().remove(item);
+					}else{
+						item.setAmount(amt-1);
+					}
+					
 					block.setType(Material.AIR);
 					World world = block.getWorld();
 					if(!world.generateTree(block.getLocation(), t)){
