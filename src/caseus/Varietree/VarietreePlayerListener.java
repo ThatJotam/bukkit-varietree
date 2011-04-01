@@ -8,12 +8,12 @@ import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.entity.Player;
-import org.bukkit.event.block.BlockRightClickEvent;
-import org.bukkit.event.block.BlockListener;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerListener;
 
 import caseus.Varietree.Varietree;
 
-public class VarietreeBlockListener extends BlockListener {
+public class VarietreePlayerListener extends PlayerListener {
 	public static Varietree plugin;
 	public static final Random RANDOM = new Random();
 	
@@ -29,7 +29,7 @@ public class VarietreeBlockListener extends BlockListener {
 		return Varietree.treeTypes.get(0);
 	}
 	
-	public VarietreeBlockListener(Varietree instance){
+	public VarietreePlayerListener(Varietree instance){
 		plugin = instance;
 	}
 	
@@ -41,13 +41,20 @@ public class VarietreeBlockListener extends BlockListener {
 		return Varietree.Permissions.has(player, permission);
 	}
 	
-	public void onBlockRightClick(BlockRightClickEvent event){
-		Block block = event.getBlock();
-		ItemStack item = event.getItemInHand();
+	public void onPlayerInteract(PlayerInteractEvent event){
+		if(!event.hasBlock() || !event.hasItem()){
+			return;
+		}
+		
+		Block block = event.getClickedBlock();
+		ItemStack item = event.getItem();
 		
 		if(block.getType() == Material.SAPLING){
 			if(item.getType() == Material.INK_SACK){
 				if(item.getData().getData() == 0x0){
+					
+					event.setCancelled(true);
+					
 					Player player = event.getPlayer();
 					
 					TreeType t = TreeType.TREE;

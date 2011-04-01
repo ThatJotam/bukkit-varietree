@@ -20,7 +20,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.util.config.Configuration;
 
 public class Varietree extends JavaPlugin {
-    private final VarietreeBlockListener blockListener = new VarietreeBlockListener(this);
+    private final VarietreePlayerListener blockListener = new VarietreePlayerListener(this);
     private boolean usePermissions;
     
     public static PermissionHandler Permissions = null;
@@ -87,7 +87,7 @@ public class Varietree extends JavaPlugin {
 		}
 	    // Register our events
 	    PluginManager pm = getServer().getPluginManager();
-	    pm.registerEvent(Event.Type.BLOCK_RIGHTCLICKED, blockListener, Priority.Normal, this);
+	    pm.registerEvent(Event.Type.PLAYER_INTERACT, blockListener, Priority.Normal, this);
 	    // EXAMPLE: Custom code, here we just output some info so we can check all is well
 	    PluginDescriptionFile pdfFile = this.getDescription();
 	    System.out.println( pdfFile.getName() + " version " + pdfFile.getVersion() + " is enabled!" );
